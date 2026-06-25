@@ -7,11 +7,13 @@ Most "entity extraction" lists were written for the 2018 NLP world — CRFs,
 BiLSTMs, and paper dumps. The field has changed: zero-shot taggers, LLM
 structured outputs, and graph extraction now do in one prompt what used to take
 a labeled corpus and a training run. This list is **practitioner-first** and
-**kept current**: every entry links to a real, maintained project.
+**kept current**: every entry links to a real, maintained project, and a CI job
+re-checks every link weekly.
 
 *Entity extraction* here covers the whole family: Named Entity Recognition
 (NER), relation/knowledge extraction, structured-data extraction from text and
-documents, PII detection, and the annotation/eval tooling around it.
+documents, entity linking, PII detection, and the annotation/eval tooling
+around it.
 
 ## Contents
 
@@ -19,19 +21,23 @@ documents, PII detection, and the annotation/eval tooling around it.
 - [LLM-Based and Structured Extraction](#llm-based-and-structured-extraction)
 - [Zero-Shot and Modern NER Models](#zero-shot-and-modern-ner-models)
 - [Relation and Knowledge Extraction](#relation-and-knowledge-extraction)
+- [Entity Linking](#entity-linking)
+- [Document and Layout Extraction](#document-and-layout-extraction)
 - [Specialized Extraction](#specialized-extraction)
 - [Annotation and Evaluation Tools](#annotation-and-evaluation-tools)
 - [Datasets and Benchmarks](#datasets-and-benchmarks)
 - [Tutorials and Learning](#tutorials-and-learning)
-- [Contributing](#contributing)
 
 ## Libraries and Frameworks
 
 General-purpose NLP toolkits with strong, production-grade NER components.
 
 - [spaCy](https://github.com/explosion/spaCy) - Industrial-strength NLP in Python; fast, trainable NER pipelines and the `spancat` component for overlapping spans.
+- [Hugging Face Transformers](https://github.com/huggingface/transformers) - The model hub and library behind most modern token-classification (NER) models.
 - [Flair](https://github.com/flairNLP/flair) - Simple framework with state-of-the-art sequence taggers and contextual string embeddings.
 - [Stanza](https://github.com/stanfordnlp/stanza) - Stanford NLP's neural pipeline with NER for 60+ languages.
+- [Stanford CoreNLP](https://github.com/stanfordnlp/CoreNLP) - The long-standing Java NLP suite with rule-based and statistical NER.
+- [HanLP](https://github.com/hankcs/HanLP) - Multilingual NLP toolkit with strong NER, especially for Chinese.
 - [Spark NLP](https://github.com/JohnSnowLabs/spark-nlp) - Scalable NLP for Apache Spark with a large catalog of pretrained NER models.
 - [PaddleNLP](https://github.com/PaddlePaddle/PaddleNLP) - Broad NLP library with information-extraction (UIE) pipelines.
 - [NLTK](https://github.com/nltk/nltk) - The classic Python NLP toolkit; useful for chunking-based entity extraction and teaching.
@@ -43,27 +49,70 @@ The modern default: prompt a model and get back typed, validated structures.
 
 - [LangExtract](https://github.com/google/langextract) - Google's library for extracting structured information from text with LLMs, including source grounding.
 - [Instructor](https://github.com/567-labs/instructor) - Structured LLM outputs via Pydantic schemas; the de-facto way to extract typed entities.
-- [Outlines](https://github.com/dottxt-ai/outlines) - Constrained/structured generation that guarantees the model emits valid schemas (great for extraction).
+- [Outlines](https://github.com/dottxt-ai/outlines) - Constrained/structured generation that guarantees the model emits valid schemas.
 - [GraphRAG](https://github.com/microsoft/graphrag) - Microsoft's pipeline that extracts entities and relationships from text to build a knowledge graph for RAG.
+- [Guidance](https://github.com/guidance-ai/guidance) - Programming paradigm for steering LLMs, including constrained output for reliable extraction.
+- [Guardrails](https://github.com/guardrails-ai/guardrails) - Adds structure, type, and quality guarantees to LLM outputs.
+- [BAML](https://github.com/BoundaryML/baml) - A language for writing typed LLM functions; strong for schema-first extraction.
+- [Marvin](https://github.com/PrefectHQ/marvin) - AI toolkit that turns text into structured Python objects with minimal code.
 - [Haystack](https://github.com/deepset-ai/haystack) - LLM orchestration framework with extractive components and structured-output support.
+- [kor](https://github.com/eyurtsev/kor) - Prompt-based structured extraction helper for LLMs (LangChain-friendly).
 - [spacy-llm](https://github.com/explosion/spacy-llm) - Drop LLM prompts into spaCy pipelines for zero/few-shot NER with no training.
 - [Zerox](https://github.com/getomni-ai/zerox) - OCR-then-LLM pipeline that turns documents (PDFs, images) into structured data.
+- [jsonformer](https://github.com/1rgs/jsonformer) - Generate guaranteed-valid JSON from LLMs by only sampling the schema's content tokens.
+- [lm-format-enforcer](https://github.com/noamgat/lm-format-enforcer) - Enforce JSON Schema / regex output formats during generation.
 
 ## Zero-Shot and Modern NER Models
 
-Tag arbitrary entity types with no task-specific training.
+Tag arbitrary entity types with little or no task-specific training.
 
 - [GLiNER](https://github.com/urchade/GLiNER) - Generalist, lightweight model that recognizes any entity type from a label list — zero-shot, runs on CPU.
 - [UniversalNER](https://github.com/universal-ner/universal-ner) - Distilled open models targeting open-domain, instruction-following NER.
+- [SpanMarker](https://github.com/tomaarsen/SpanMarkerNER) - Framework for training strong span-marker NER models on top of any encoder.
+- [GoLLIE](https://github.com/hitz-zentroa/GoLLIE) - Code-LLM that performs zero-shot extraction by following annotation guidelines.
 - [Zshot](https://github.com/IBM/zshot) - IBM's zero/few-shot entity and relation extraction framework that plugs into spaCy.
+
+**Choosing an approach** — a quick, opinionated map (not a benchmark — pick by fit):
+
+| Approach                        | Zero-shot | Training needed | Best for                                   |
+| ------------------------------- | --------- | --------------- | ------------------------------------------ |
+| **GLiNER**                      | Yes       | No              | Fast custom entity types, on-device / CPU  |
+| **SpanMarker**                  | No        | Yes (fine-tune) | High accuracy on a fixed, known schema     |
+| **UniversalNER / GoLLIE**       | Yes       | No              | Open-domain or guideline-driven extraction |
+| **spaCy (trainable)**           | No        | Yes             | Production pipelines with your own labels  |
+| **LLM + Instructor / Outlines** | Yes       | No              | Arbitrary structured fields, messy inputs  |
 
 ## Relation and Knowledge Extraction
 
 Beyond spans: pull relationships and triples to build knowledge graphs.
 
-- [DeepKE](https://github.com/zjunlp/DeepKE) - Knowledge-extraction toolkit for NER, relation, and attribute extraction (standard, low-resource, and document-level).
+- [DeepKE](https://github.com/zjunlp/DeepKE) - Knowledge-extraction toolkit for NER, relation, and attribute extraction (standard, low-resource, document-level).
 - [OpenNRE](https://github.com/thunlp/OpenNRE) - Open-source package for neural relation extraction.
 - [REBEL](https://github.com/Babelscape/rebel) - Relation extraction as end-to-end seq2seq, jointly extracting entities and relations.
+
+## Entity Linking
+
+Resolve mentions to canonical knowledge-base entries (e.g. Wikidata).
+
+- [BLINK](https://github.com/facebookresearch/BLINK) - Entity linking over Wikipedia using a bi-encoder + cross-encoder architecture.
+- [GENRE](https://github.com/facebookresearch/GENRE) - Autoregressive entity retrieval/linking that generates the entity name.
+- [ReFinED](https://github.com/amazon-science/ReFinED) - Fast, end-to-end entity linking that resolves and types mentions in one pass.
+
+## Document and Layout Extraction
+
+Get entities and structured data out of PDFs, scans, and complex layouts.
+
+- [Docling](https://github.com/docling-project/docling) - Parse PDFs, DOCX, and more into structured, AI-ready document representations.
+- [Marker](https://github.com/datalab-to/marker) - Convert PDFs and documents to clean Markdown/JSON with high fidelity.
+- [Unstructured](https://github.com/Unstructured-IO/unstructured) - Pre-processing library that extracts text and elements from many document types.
+- [Surya](https://github.com/datalab-to/surya) - OCR, layout, reading-order, and table detection across 90+ languages.
+- [Nougat](https://github.com/facebookresearch/nougat) - Transformer model that converts scientific PDFs (incl. math) to markup.
+- [LayoutParser](https://github.com/Layout-Parser/layout-parser) - Deep-learning toolkit for document image layout analysis.
+- [Donut](https://github.com/clovaai/donut) - OCR-free document understanding transformer for parsing and extraction.
+- [Table Transformer](https://github.com/microsoft/table-transformer) - Detect and extract tables (and their structure) from documents.
+- [pdfplumber](https://github.com/jsvine/pdfplumber) - Extract text, tables, and shapes from PDFs with fine-grained control.
+- [Camelot](https://github.com/camelot-dev/camelot) - Extract tables from text-based PDFs into DataFrames.
+- [spacy-layout](https://github.com/explosion/spacy-layout) - Bring Docling-parsed document layout into spaCy pipelines.
 
 ## Specialized Extraction
 
@@ -71,9 +120,9 @@ Domain- and type-specific extraction.
 
 - [Presidio](https://github.com/microsoft/presidio) - Microsoft's PII detection and de-identification for text and images.
 - [scispaCy](https://github.com/allenai/scispacy) - spaCy models for biomedical, scientific, and clinical entity extraction.
+- [medspaCy](https://github.com/medspacy/medspacy) - Clinical NLP with spaCy, including context and section detection.
 - [KeyBERT](https://github.com/MaartenGr/KeyBERT) - Keyword and keyphrase extraction using BERT embeddings.
 - [pke](https://github.com/boudinfl/pke) - Python keyphrase-extraction toolkit (supervised and unsupervised).
-- [Table Transformer](https://github.com/microsoft/table-transformer) - Detect and extract tables (and their structure) from documents.
 
 ## Annotation and Evaluation Tools
 
@@ -83,10 +132,13 @@ You still need labeled data for evaluation and fine-tuning.
 - [doccano](https://github.com/doccano/doccano) - Open-source text annotation tool for NER, classification, and sequence labeling.
 - [Argilla](https://github.com/argilla-io/argilla) - Collaboration platform for building and curating NLP/LLM datasets.
 - [prodigy-recipes](https://github.com/explosion/prodigy-recipes) - Recipes and examples for Prodigy, the scriptable annotation tool from the spaCy team.
+- [brat](https://github.com/nlplab/brat) - Classic web-based tool for rich text annotation, widely used for NER/relations.
+- [INCEpTION](https://github.com/inception-project/inception) - Semantic annotation platform with active learning and knowledge-base linking.
 
 ## Datasets and Benchmarks
 
 - [IEPile](https://github.com/zjunlp/IEPile) - Large-scale, bilingual information-extraction instruction corpus for training extraction models.
+- [Few-NERD](https://github.com/thunlp/Few-NERD) - Large, fine-grained NER dataset with 66 entity types for few-shot evaluation.
 
 ## Tutorials and Learning
 
@@ -97,8 +149,6 @@ You still need labeled data for evaluation and fine-tuning.
 Contributions are welcome! Please read [CONTRIBUTING.md](CONTRIBUTING.md) first.
 The one hard rule: **every entry must link to a real, maintained project** and
 include a short, factual description. No dead links, no vaporware.
-
-## License
 
 [![CC0](https://licensebuttons.net/p/zero/1.0/88x31.png)](LICENSE)
 
