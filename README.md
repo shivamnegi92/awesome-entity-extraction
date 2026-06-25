@@ -52,6 +52,8 @@ General-purpose NLP toolkits with strong, production-grade NER components.
 
 The modern default: prompt a model and get back typed, validated structures.
 
+![Structured extraction: prompt and schema produce typed JSON](assets/structured.gif)
+
 - [LangExtract](https://github.com/google/langextract) - Google's library for extracting structured information from text with LLMs, including source grounding.
 - [Instructor](https://github.com/567-labs/instructor) - Structured LLM outputs via Pydantic schemas; the de-facto way to extract typed entities.
 - [Outlines](https://github.com/dottxt-ai/outlines) - Constrained/structured generation that guarantees the model emits valid schemas.
@@ -108,6 +110,8 @@ entity types, language, and size.
 
 Beyond spans: pull relationships and triples to build knowledge graphs.
 
+![Relation extraction: subject, relation, object triples](assets/relations.gif)
+
 - [DeepKE](https://github.com/zjunlp/DeepKE) - Knowledge-extraction toolkit for NER, relation, and attribute extraction (standard, low-resource, document-level).
 - [OpenNRE](https://github.com/thunlp/OpenNRE) - Open-source package for neural relation extraction.
 - [REBEL](https://github.com/Babelscape/rebel) - Relation extraction as end-to-end seq2seq, jointly extracting entities and relations.
@@ -116,6 +120,8 @@ Beyond spans: pull relationships and triples to build knowledge graphs.
 ## Entity Linking
 
 Resolve mentions to canonical knowledge-base entries (e.g. Wikidata).
+
+![Entity linking: a mention resolved to a knowledge-base entry](assets/linking.gif)
 
 - [BLINK](https://github.com/facebookresearch/BLINK) - Entity linking over Wikipedia using a bi-encoder + cross-encoder architecture.
 - [GENRE](https://github.com/facebookresearch/GENRE) - Autoregressive entity retrieval/linking that generates the entity name.
@@ -134,6 +140,8 @@ Entity extraction beyond English.
 ## Document and Layout Extraction
 
 Get entities and structured data out of PDFs, scans, and complex layouts.
+
+![Document layout extraction: typed regions detected on a page](assets/layout.gif)
 
 - [Docling](https://github.com/docling-project/docling) - Parse PDFs, DOCX, and more into structured, AI-ready document representations.
 - [Marker](https://github.com/datalab-to/marker) - Convert PDFs and documents to clean Markdown/JSON with high fidelity.
