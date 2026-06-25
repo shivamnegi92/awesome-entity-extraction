@@ -20,9 +20,12 @@ around it.
 - [Libraries and Frameworks](#libraries-and-frameworks)
 - [LLM-Based and Structured Extraction](#llm-based-and-structured-extraction)
 - [Zero-Shot and Modern NER Models](#zero-shot-and-modern-ner-models)
+- [Ready-to-Use Models (Hugging Face)](#ready-to-use-models-hugging-face)
 - [Relation and Knowledge Extraction](#relation-and-knowledge-extraction)
 - [Entity Linking](#entity-linking)
+- [Multilingual Extraction](#multilingual-extraction)
 - [Document and Layout Extraction](#document-and-layout-extraction)
+- [Temporal, Numeric, and Pattern Extraction](#temporal-numeric-and-pattern-extraction)
 - [Specialized Extraction](#specialized-extraction)
 - [Annotation and Evaluation Tools](#annotation-and-evaluation-tools)
 - [Datasets and Benchmarks](#datasets-and-benchmarks)
@@ -82,6 +85,18 @@ Tag arbitrary entity types with little or no task-specific training.
 | **spaCy (trainable)**           | No        | Yes             | Production pipelines with your own labels  |
 | **LLM + Instructor / Outlines** | Yes       | No              | Arbitrary structured fields, messy inputs  |
 
+## Ready-to-Use Models (Hugging Face)
+
+Pretrained checkpoints you can `pip install transformers` and run today. Pick by
+entity types, language, and size.
+
+- [GLiNER multi v2.1](https://huggingface.co/urchade/gliner_multi-v2.1) - Multilingual zero-shot GLiNER; name any entity types at inference time.
+- [NuExtract 1.5](https://huggingface.co/numind/NuExtract-1.5) - Small, fine-tunable model for template-based structured extraction.
+- [NuNER Zero](https://huggingface.co/numind/NuNER_Zero) - Compact zero-shot token-classification NER model.
+- [bert-base-NER](https://huggingface.co/dslim/bert-base-NER) - Classic, reliable English NER baseline (CoNLL-03 types).
+- [roberta-large-ner-english](https://huggingface.co/Jean-Baptiste/roberta-large-ner-english) - Strong English NER fine-tuned on RoBERTa-large.
+- [flair/ner-english-large](https://huggingface.co/flair/ner-english-large) - High-accuracy English NER from the Flair team.
+
 ## Relation and Knowledge Extraction
 
 Beyond spans: pull relationships and triples to build knowledge graphs.
@@ -89,6 +104,7 @@ Beyond spans: pull relationships and triples to build knowledge graphs.
 - [DeepKE](https://github.com/zjunlp/DeepKE) - Knowledge-extraction toolkit for NER, relation, and attribute extraction (standard, low-resource, document-level).
 - [OpenNRE](https://github.com/thunlp/OpenNRE) - Open-source package for neural relation extraction.
 - [REBEL](https://github.com/Babelscape/rebel) - Relation extraction as end-to-end seq2seq, jointly extracting entities and relations.
+- [rebel-large (model)](https://huggingface.co/Babelscape/rebel-large) - Ready-to-run REBEL checkpoint for end-to-end relation extraction.
 
 ## Entity Linking
 
@@ -97,6 +113,15 @@ Resolve mentions to canonical knowledge-base entries (e.g. Wikidata).
 - [BLINK](https://github.com/facebookresearch/BLINK) - Entity linking over Wikipedia using a bi-encoder + cross-encoder architecture.
 - [GENRE](https://github.com/facebookresearch/GENRE) - Autoregressive entity retrieval/linking that generates the entity name.
 - [ReFinED](https://github.com/amazon-science/ReFinED) - Fast, end-to-end entity linking that resolves and types mentions in one pass.
+
+## Multilingual Extraction
+
+Entity extraction beyond English.
+
+- [T-NER](https://github.com/asahi417/tner) - Python library and model zoo for multilingual NER with Transformers.
+- [WikiNEuRal](https://github.com/Babelscape/wikineural) - Multilingual NER dataset and models combining neural and knowledge-based silver data.
+- [xlm-roberta-base-ner-hrl (model)](https://huggingface.co/Davlan/xlm-roberta-base-ner-hrl) - NER across 10 high-resource languages on XLM-RoBERTa.
+- [wikineural-multilingual-ner (model)](https://huggingface.co/Babelscape/wikineural-multilingual-ner) - Multilingual NER model covering nine languages.
 
 ## Document and Layout Extraction
 
@@ -114,6 +139,15 @@ Get entities and structured data out of PDFs, scans, and complex layouts.
 - [Camelot](https://github.com/camelot-dev/camelot) - Extract tables from text-based PDFs into DataFrames.
 - [spacy-layout](https://github.com/explosion/spacy-layout) - Bring Docling-parsed document layout into spaCy pipelines.
 
+## Temporal, Numeric, and Pattern Extraction
+
+Extract dates, times, quantities, and rule-based patterns.
+
+- [dateparser](https://github.com/scrapinghub/dateparser) - Parse dates and times from human-readable text in many languages.
+- [Duckling](https://github.com/facebook/duckling) - Facebook's rule-based parser for dates, times, numbers, amounts, and durations.
+- [quantulum3](https://github.com/nielstron/quantulum3) - Extract quantities, units, and measurements from unstructured text.
+- [HeidelTime](https://github.com/HeidelTime/heideltime) - Multilingual, cross-domain temporal tagger for normalized time expressions.
+
 ## Specialized Extraction
 
 Domain- and type-specific extraction.
@@ -123,6 +157,9 @@ Domain- and type-specific extraction.
 - [medspaCy](https://github.com/medspacy/medspacy) - Clinical NLP with spaCy, including context and section detection.
 - [KeyBERT](https://github.com/MaartenGr/KeyBERT) - Keyword and keyphrase extraction using BERT embeddings.
 - [pke](https://github.com/boudinfl/pke) - Python keyphrase-extraction toolkit (supervised and unsupervised).
+- [biomedical-ner-all (model)](https://huggingface.co/d4data/biomedical-ner-all) - Recognizes 100+ biomedical entity types out of the box.
+- [Medical-NER (model)](https://huggingface.co/blaze999/Medical-NER) - DeBERTa-based clinical NER covering a wide range of medical entities.
+- [gliner_large_bio (model)](https://huggingface.co/urchade/gliner_large_bio-v0.1) - Zero-shot GLiNER tuned for biomedical entities.
 
 ## Annotation and Evaluation Tools
 
