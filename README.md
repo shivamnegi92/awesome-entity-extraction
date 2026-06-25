@@ -3,6 +3,8 @@
 > A curated, **LLM-era** list of tools, models, libraries, and resources for
 > extracting entities, relations, and structured data from unstructured text.
 
+![Entity extraction: text in, structured entities out](assets/demo.gif)
+
 Most "entity extraction" lists were written for the 2018 NLP world — CRFs,
 BiLSTMs, and paper dumps. The field has changed: zero-shot taggers, LLM
 structured outputs, and graph extraction now do in one prompt what used to take
@@ -91,9 +93,14 @@ Pretrained checkpoints you can `pip install transformers` and run today. Pick by
 entity types, language, and size.
 
 - [GLiNER multi v2.1](https://huggingface.co/urchade/gliner_multi-v2.1) - Multilingual zero-shot GLiNER; name any entity types at inference time.
+- [GLiNER large v2.1](https://huggingface.co/urchade/gliner_large-v2.1) - Larger English-focused GLiNER for higher zero-shot accuracy.
+- [UniNER-7B-all](https://huggingface.co/Universal-NER/UniNER-7B-all) - UniversalNER 7B instruction model for open-domain zero-shot NER.
+- [GoLLIE-7B](https://huggingface.co/HiTZ/GoLLIE-7B) - Guideline-following extraction model based on Code-LLaMA.
 - [NuExtract 1.5](https://huggingface.co/numind/NuExtract-1.5) - Small, fine-tunable model for template-based structured extraction.
+- [NuExtract 2.0 8B](https://huggingface.co/numind/NuExtract-2.0-8B) - Larger NuExtract for higher-accuracy structured extraction.
 - [NuNER Zero](https://huggingface.co/numind/NuNER_Zero) - Compact zero-shot token-classification NER model.
 - [bert-base-NER](https://huggingface.co/dslim/bert-base-NER) - Classic, reliable English NER baseline (CoNLL-03 types).
+- [bert-large-NER](https://huggingface.co/dslim/bert-large-NER) - Larger variant of the classic English NER baseline.
 - [roberta-large-ner-english](https://huggingface.co/Jean-Baptiste/roberta-large-ner-english) - Strong English NER fine-tuned on RoBERTa-large.
 - [flair/ner-english-large](https://huggingface.co/flair/ner-english-large) - High-accuracy English NER from the Flair team.
 
@@ -122,6 +129,7 @@ Entity extraction beyond English.
 - [WikiNEuRal](https://github.com/Babelscape/wikineural) - Multilingual NER dataset and models combining neural and knowledge-based silver data.
 - [xlm-roberta-base-ner-hrl (model)](https://huggingface.co/Davlan/xlm-roberta-base-ner-hrl) - NER across 10 high-resource languages on XLM-RoBERTa.
 - [wikineural-multilingual-ner (model)](https://huggingface.co/Babelscape/wikineural-multilingual-ner) - Multilingual NER model covering nine languages.
+- [bert-base-multilingual-cased-ner-hrl (model)](https://huggingface.co/Davlan/bert-base-multilingual-cased-ner-hrl) - Multilingual BERT NER across 10 high-resource languages.
 
 ## Document and Layout Extraction
 
@@ -160,6 +168,8 @@ Domain- and type-specific extraction.
 - [biomedical-ner-all (model)](https://huggingface.co/d4data/biomedical-ner-all) - Recognizes 100+ biomedical entity types out of the box.
 - [Medical-NER (model)](https://huggingface.co/blaze999/Medical-NER) - DeBERTa-based clinical NER covering a wide range of medical entities.
 - [gliner_large_bio (model)](https://huggingface.co/urchade/gliner_large_bio-v0.1) - Zero-shot GLiNER tuned for biomedical entities.
+- [gliner_multi_pii (model)](https://huggingface.co/urchade/gliner_multi_pii-v1) - Zero-shot GLiNER specialized for detecting PII entity types.
+- [deberta_finetuned_pii (model)](https://huggingface.co/lakshyakh93/deberta_finetuned_pii) - DeBERTa model fine-tuned to detect a broad set of PII fields.
 
 ## Annotation and Evaluation Tools
 
@@ -176,6 +186,12 @@ You still need labeled data for evaluation and fine-tuning.
 
 - [IEPile](https://github.com/zjunlp/IEPile) - Large-scale, bilingual information-extraction instruction corpus for training extraction models.
 - [Few-NERD](https://github.com/thunlp/Few-NERD) - Large, fine-grained NER dataset with 66 entity types for few-shot evaluation.
+- [CoNLL-2003 (dataset)](https://huggingface.co/datasets/eriktks/conll2003) - The canonical English NER benchmark (PER, ORG, LOC, MISC).
+- [Few-NERD (dataset)](https://huggingface.co/datasets/DFKI-SLT/few-nerd) - Ready-to-load Few-NERD splits on the Hugging Face Hub.
+- [MultiNERD](https://huggingface.co/datasets/Babelscape/multinerd) - Multilingual, multi-genre NER dataset spanning 10 languages.
+- [WikiANN](https://huggingface.co/datasets/unimelb-nlp/wikiann) - Cross-lingual NER over 176 languages built from Wikipedia.
+- [OntoNotes 5 (dataset)](https://huggingface.co/datasets/tner/ontonotes5) - Large multi-domain NER dataset with 18 entity types.
+- [MultiCoNER v2](https://huggingface.co/datasets/MultiCoNER/multiconer_v2) - Complex, fine-grained multilingual NER benchmark.
 
 ## Tutorials and Learning
 
