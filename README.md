@@ -3,6 +3,9 @@
 > A curated, **LLM-era** list of tools, models, libraries, and resources for
 > extracting entities, relations, and structured data from unstructured text.
 
+[![awesome-lint](https://github.com/shivamnegi92/awesome-entity-extraction/actions/workflows/awesome-lint.yml/badge.svg)](https://github.com/shivamnegi92/awesome-entity-extraction/actions/workflows/awesome-lint.yml)
+[![links](https://github.com/shivamnegi92/awesome-entity-extraction/actions/workflows/links.yml/badge.svg)](https://github.com/shivamnegi92/awesome-entity-extraction/actions/workflows/links.yml)
+
 ![Entity extraction: text in, structured entities out](assets/demo.gif)
 
 Most "entity extraction" lists were written for the 2018 NLP world — CRFs,
@@ -20,6 +23,7 @@ around it.
 ## Contents
 
 - [🧰 Libraries and Frameworks](#-libraries-and-frameworks)
+- [☁️ Cloud and Commercial APIs](#-cloud-and-commercial-apis)
 - [🤖 LLM-Based and Structured Extraction](#-llm-based-and-structured-extraction)
 - [🎯 Zero-Shot and Modern NER Models](#-zero-shot-and-modern-ner-models)
 - [🤗 Ready-to-Use Models (Hugging Face)](#-ready-to-use-models-hugging-face)
@@ -30,6 +34,7 @@ around it.
 - [📅 Temporal, Numeric, and Pattern Extraction](#-temporal-numeric-and-pattern-extraction)
 - [🔬 Specialized Extraction](#-specialized-extraction)
 - [🏷️ Annotation and Evaluation Tools](#-annotation-and-evaluation-tools)
+- [📏 Evaluation, Metrics, and Visualization](#-evaluation-metrics-and-visualization)
 - [📊 Datasets and Benchmarks](#-datasets-and-benchmarks)
 - [📚 Tutorials and Learning](#-tutorials-and-learning)
 
@@ -47,6 +52,15 @@ General-purpose NLP toolkits with strong, production-grade NER components.
 - [PaddleNLP](https://github.com/PaddlePaddle/PaddleNLP) - Broad NLP library with information-extraction (UIE) pipelines.
 - [NLTK](https://github.com/nltk/nltk) - The classic Python NLP toolkit; useful for chunking-based entity extraction and teaching.
 - [nlp.js](https://github.com/axa-group/nlp.js) - NLP library for Node.js with built-in entity extraction.
+
+## ☁️ Cloud and Commercial APIs
+
+Managed services for teams that want extraction without hosting models.
+
+- [Amazon Comprehend](https://aws.amazon.com/comprehend/) - AWS managed NLP with entity, PII, and key-phrase detection.
+- [Google Cloud Natural Language](https://cloud.google.com/natural-language) - Entity, sentiment, and syntax analysis API.
+- [Azure AI Language](https://azure.microsoft.com/en-us/products/ai-foundry/tools/language) - Microsoft's NER, PII, and entity-linking service.
+- [IBM Watson NLU](https://www.ibm.com/products/natural-language-understanding) - Entity, relation, and keyword extraction API.
 
 ## 🤖 LLM-Based and Structured Extraction
 
@@ -197,6 +211,14 @@ You still need labeled data for evaluation and fine-tuning.
 - [prodigy-recipes](https://github.com/explosion/prodigy-recipes) - Recipes and examples for Prodigy, the scriptable annotation tool from the spaCy team.
 - [brat](https://github.com/nlplab/brat) - Classic web-based tool for rich text annotation, widely used for NER/relations.
 - [INCEpTION](https://github.com/inception-project/inception) - Semantic annotation platform with active learning and knowledge-base linking.
+
+## 📏 Evaluation, Metrics, and Visualization
+
+Score your extractor and inspect its output.
+
+- [seqeval](https://github.com/chakki-works/seqeval) - Standard framework for sequence-labeling (NER) evaluation with entity-level F1.
+- [nervaluate](https://github.com/MantisAI/nervaluate) - Nuanced NER evaluation (partial, exact, type) following the SemEval scheme.
+- [spacy-streamlit](https://github.com/explosion/spacy-streamlit) - Streamlit components to visualize spaCy pipelines and entities.
 
 ## 📊 Datasets and Benchmarks
 
