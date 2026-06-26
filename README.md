@@ -40,6 +40,7 @@ around it.
 - [🏷️ Annotation and Evaluation Tools](#-annotation-and-evaluation-tools)
 - [📏 Evaluation, Metrics, and Visualization](#-evaluation-metrics-and-visualization)
 - [📊 Datasets and Benchmarks](#-datasets-and-benchmarks)
+- [🔗 Related Awesome Lists](#-related-awesome-lists)
 - [📚 Tutorials and Learning](#-tutorials-and-learning)
 
 ## 🧰 Libraries and Frameworks
@@ -241,6 +242,11 @@ Score your extractor and inspect its output.
 - [🤗 BioNLP 2004 (dataset)](https://huggingface.co/datasets/tner/bionlp2004) - Molecular-biology NER benchmark.
 - [🤗 FIN (dataset)](https://huggingface.co/datasets/tner/fin) - Financial-domain NER dataset.
 - [🤗 MIT Movie (dataset)](https://huggingface.co/datasets/tner/mit_movie_trivia) - Slot-filling / NER over movie queries.
+
+## 🔗 Related Awesome Lists
+
+- [Awesome Multimodal Extraction](https://github.com/shivamnegi92/awesome-multimodal-extraction) - The multimodal sibling: extracting entities from images + text (VLMs, document AI).
+- [Awesome VLM Architectures](https://github.com/gokayfem/awesome-vlm-architectures) - Deep dive on vision-language model architectures.
 
 ## 📚 Tutorials and Learning
 
