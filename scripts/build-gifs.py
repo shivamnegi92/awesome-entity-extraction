@@ -274,9 +274,61 @@ def linking():
     build("linking", w, h, frames)
 
 
+# --------------------------------------------------------- which tool? (flow)
+def decision():
+    w, h = 900, 560
+    steps_def = [
+        ("Input is PDFs or scanned docs?", "Docling / Marker / Unstructured", "ORG"),
+        ("Want a managed API, no hosting?", "Comprehend / Google / Azure", "PERSON"),
+        ("Arbitrary fields from messy text?", "LLM + Instructor / Outlines", "GPE"),
+        ("Custom entity types, no training?", "GLiNER (zero-shot)", "DATE"),
+        ("Have labeled data, fixed schema?", "spaCy / SpanMarker (train)", "MONEY"),
+    ]
+    qx, qw, qh = 40, 380, 52
+    cx, cw = 480, 380
+    y0, gap = 100, 80
+
+    def frame(n):
+        p = []
+        head(p, w, "Which tool should I pick?", "answer top-down; first YES wins")
+        for i, (q, rec, ty) in enumerate(steps_def):
+            if i >= n:
+                continue
+            y = y0 + i * gap
+            # question box
+            p.append(f'<rect x="{qx}" y="{y}" width="{qw}" height="{qh}" rx="10" fill="{CARD}" stroke="{BORDER}"/>')
+            p.append(f'<text x="{qx+18}" y="{y+32}" class="s" font-size="15" fill="{FG}">{esc(q)}</text>')
+            # YES arrow -> recommendation chip
+            ay = y + qh // 2
+            p.append(f'<line x1="{qx+qw}" y1="{ay}" x2="{cx}" y2="{ay}" stroke="{GRAY}" stroke-width="2" marker-end="url(#arw2)"/>')
+            p.append(f'<text x="{qx+qw+18}" y="{ay-6}" class="m" font-size="10" fill="{TYPE[ty]}">YES</text>')
+            p.append(f'<rect x="{cx}" y="{y+6}" width="{cw}" height="40" rx="8" fill="{TYPE[ty]}"/>')
+            p.append(f'<text x="{cx+cw/2}" y="{y+32}" text-anchor="middle" class="s" font-size="15" font-weight="700" fill="#0d1117">{esc(rec)}</text>')
+            # NO connector down to next question
+            if i < len(steps_def) - 1:
+                p.append(f'<line x1="{qx+30}" y1="{y+qh}" x2="{qx+30}" y2="{y+gap}" stroke="{BORDER}" stroke-width="2"/>')
+                p.append(f'<text x="{qx+40}" y="{y+qh+18}" class="m" font-size="9" fill="{DIM}">no</text>')
+        # default fallback
+        if n > len(steps_def):
+            yd = y0 + len(steps_def) * gap
+            p.append(f'<text x="{qx+18}" y="{yd+6}" class="m" font-size="12" fill="{DIM}">else (just NER):</text>')
+            p.append(f'<rect x="{cx}" y="{yd-14}" width="{cw}" height="40" rx="8" fill="none" stroke="#56d4dd" stroke-width="2"/>')
+            p.append(f'<text x="{cx+cw/2}" y="{yd+12}" text-anchor="middle" class="s" font-size="15" font-weight="700" fill="#56d4dd">Start with a Hugging Face NER model</text>')
+        p.insert(0, f'<defs><marker id="arw2" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="{GRAY}"/></marker></defs>')
+        return p
+
+    frames = [(frame(0), 700)]
+    for i in range(1, len(steps_def) + 1):
+        frames.append((frame(i), 800))
+    frames.append((frame(len(steps_def) + 1), 900))
+    frames.append((frame(len(steps_def) + 1), 3000))
+    build("decision", w, h, frames)
+
+
 if __name__ == "__main__":
     hero()
     structured()
     relations()
     layout()
     linking()
+    decision()

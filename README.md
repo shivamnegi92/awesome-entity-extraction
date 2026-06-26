@@ -20,6 +20,10 @@ re-checks every link weekly.
 documents, entity linking, PII detection, and the annotation/eval tooling
 around it.
 
+**Not sure where to start?** This picks a tool from your constraints:
+
+![Which tool should I pick? A decision flowchart](assets/decision.gif)
+
 ## Contents
 
 - [🧰 Libraries and Frameworks](#-libraries-and-frameworks)
@@ -226,6 +230,8 @@ Score your extractor and inspect its output.
 - [Few-NERD](https://github.com/thunlp/Few-NERD) - Large, fine-grained NER dataset with 66 entity types for few-shot evaluation.
 - [🤗 CoNLL-2003 (dataset)](https://huggingface.co/datasets/eriktks/conll2003) - The canonical English NER benchmark (PER, ORG, LOC, MISC).
 - [🤗 Few-NERD (dataset)](https://huggingface.co/datasets/DFKI-SLT/few-nerd) - Ready-to-load Few-NERD splits on the Hugging Face Hub.
+- [entity-recognition-datasets](https://github.com/juand-r/entity-recognition-datasets) - A large, organized index of NER datasets across domains and languages.
+- [NLP-progress: NER](https://github.com/sebastianruder/NLP-progress) - A maintained, living leaderboard of state-of-the-art NER results.
 - [🤗 MultiNERD](https://huggingface.co/datasets/Babelscape/multinerd) - Multilingual, multi-genre NER dataset spanning 10 languages.
 - [🤗 WikiANN](https://huggingface.co/datasets/unimelb-nlp/wikiann) - Cross-lingual NER over 176 languages built from Wikipedia.
 - [🤗 OntoNotes 5 (dataset)](https://huggingface.co/datasets/tner/ontonotes5) - Large multi-domain NER dataset with 18 entity types.
