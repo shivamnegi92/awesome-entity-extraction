@@ -173,18 +173,19 @@ Entity extraction beyond English.
 ## 📄 Document and Layout Extraction
 
 Get entities and structured data out of PDFs, scans, and complex layouts.
+See the [six-entry scope and freshness audit](audits/document-layout-2026-10-22.md) for input types and OCR/layout boundaries (checked 2026-10-22).
 
 ![Document layout extraction: typed regions detected on a page](assets/layout.gif)
 
 - [Docling](https://github.com/docling-project/docling) - Parse PDFs, DOCX, and more into structured, AI-ready document representations.
 - [Marker](https://github.com/datalab-to/marker) - Convert PDFs and documents to clean Markdown/JSON with high fidelity.
 - [Unstructured](https://github.com/Unstructured-IO/unstructured) - Pre-processing library that extracts text and elements from many document types.
-- [Surya](https://github.com/datalab-to/surya) - OCR, layout, reading-order, and table detection across 90+ languages.
+- [Surya](https://github.com/datalab-to/surya) - OCR, layout, reading-order, and table recognition across 90+ languages.
 - [Nougat](https://github.com/facebookresearch/nougat) - Transformer model that converts scientific PDFs (incl. math) to markup.
-- [LayoutParser](https://github.com/Layout-Parser/layout-parser) - Deep-learning toolkit for document image layout analysis.
+- [LayoutParser](https://github.com/Layout-Parser/layout-parser) - Document image layout analysis toolkit with optional OCR agents.
 - [Donut](https://github.com/clovaai/donut) - OCR-free document understanding transformer for parsing and extraction.
 - [Table Transformer](https://github.com/microsoft/table-transformer) - Detect and extract tables (and their structure) from documents.
-- [pdfplumber](https://github.com/jsvine/pdfplumber) - Extract text, tables, and shapes from PDFs with fine-grained control.
+- [pdfplumber](https://github.com/jsvine/pdfplumber) - Extract text, tables, and shapes from PDFs; works best on machine-generated PDFs and does not provide OCR.
 - [Camelot](https://github.com/camelot-dev/camelot) - Extract tables from text-based PDFs into DataFrames.
 - [spacy-layout](https://github.com/explosion/spacy-layout) - Bring Docling-parsed document layout into spaCy pipelines.
 
